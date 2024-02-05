@@ -8,7 +8,7 @@ Login Page and Signup Page UI in Flutter
 
 - Register
 
-  ![alt text](https://github.com/andreirosca92/Login_Register_Flutter_UI_Design/blob/master/images/signup_flutter.PNG?raw=true)
+  ![alt text](https://github.com/andreirosca92/Login_Register_Flutter_UI_Design/blob/master/images/signup_flutter_1.PNG?raw=true)
 
 ## Getting Started
 
