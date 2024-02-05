@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:login_register_flutter_ui_design/modules/register/controllers/register_controller.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends GetView<RegisterController> {
   const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(RegisterController());
     return Material(
       child: Container(
         color: Colors.white,
@@ -80,8 +82,8 @@ class SignUpScreen extends StatelessWidget {
               ),
 
               child: Center(
-                child: TextFormField(
-                  obscureText: true,
+                child: Obx(()=>TextFormField(
+                  obscureText: controller.isPasswordHidden.value,
                   decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: "Enter Password",
@@ -89,15 +91,20 @@ class SignUpScreen extends StatelessWidget {
                         Icons.lock,
                         color: Colors.black.withOpacity(0.5),
                       ),
-                      suffixIcon: Icon(
-                        Icons.remove_red_eye_outlined,
-                        color: Colors.black.withOpacity(0.5),
+                      suffixIcon: InkWell(
+                        onTap: (){
+                          controller.isPasswordHidden.value = !controller.isPasswordHidden.value;
+                        },
+                        child: Icon(
+                            controller.isPasswordHidden.value ? Icons.visibility: Icons.remove_red_eye_outlined,
+                          color: Colors.black.withOpacity(0.5),
+                        ),
                       )
                   ),
                   cursorColor: Colors.black,
                 ),
               ),
-
+              ),
             ),
             SizedBox(height: 20,),
             Container(
@@ -110,8 +117,8 @@ class SignUpScreen extends StatelessWidget {
               ),
 
               child: Center(
-                child: TextFormField(
-                  obscureText: true,
+                child: Obx(()=> TextFormField(
+                  obscureText: controller.isPasswordHidden.value,
                   decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: "Confirm Password",
@@ -119,15 +126,20 @@ class SignUpScreen extends StatelessWidget {
                         Icons.lock,
                         color: Colors.black.withOpacity(0.5),
                       ),
-                      suffixIcon: Icon(
-                        Icons.remove_red_eye_outlined,
-                        color: Colors.black.withOpacity(0.5),
+                      suffixIcon: InkWell(
+                        onTap: (){
+                          controller.isPasswordHidden.value = !controller.isPasswordHidden.value;
+                        },
+                        child: Icon(
+                            controller.isPasswordHidden.value ? Icons.visibility: Icons.remove_red_eye_outlined,
+                          color: Colors.black.withOpacity(0.5),
+                        ),
                       )
                   ),
                   cursorColor: Colors.black,
                 ),
               ),
-
+              ),
             ),
             SizedBox(height: 40,),
             InkWell(
@@ -168,7 +180,7 @@ class SignUpScreen extends StatelessWidget {
                 ),
                 SizedBox(width: 10,),
                 InkWell(onTap: (){
-                  Get.toNamed('/');
+                  Get.toNamed('/login');
                 },
 
                   child: Text("Log In",

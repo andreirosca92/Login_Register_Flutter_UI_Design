@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-class LoginScreen extends StatelessWidget {
+import 'package:login_register_flutter_ui_design/modules/login/controllers/login_controller.dart';
+class LoginScreen extends GetView<LoginController>{
   const LoginScreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LoginController());
     return Material(
       child: Container(
         color: Colors.white,
@@ -49,8 +52,9 @@ class LoginScreen extends StatelessWidget {
               ),
 
               child: Center(
-                child: TextFormField(
-                  obscureText: true,
+
+                child: Obx(()=>TextFormField(
+                  obscureText:controller.isPasswordHidden.value,
                   decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: "Enter Password",
@@ -58,15 +62,20 @@ class LoginScreen extends StatelessWidget {
                         Icons.lock,
                         color: Colors.black.withOpacity(0.5),
                       ),
-                      suffixIcon: Icon(
-                        Icons.remove_red_eye_outlined,
-                        color: Colors.black.withOpacity(0.5),
+                      suffixIcon: InkWell(
+                        onTap: (){
+                          controller.isPasswordHidden.value = !controller.isPasswordHidden.value;
+                        },
+                        child: Icon(
+                          controller.isPasswordHidden.value ? Icons.visibility: Icons.remove_red_eye_outlined,
+                          color: Colors.black.withOpacity(0.5),
+                        ),
                       )
                   ),
                   cursorColor: Colors.black,
                 ),
               ),
-
+              ),
             ),
             SizedBox(height: 50,),
             InkWell(
@@ -107,7 +116,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 SizedBox(width: 10,),
                 InkWell(onTap: (){
-                  Get.toNamed('/sign-up');
+                  Get.toNamed('/register');
                 },
 
                   child: Text("Sign Up",
