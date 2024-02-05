@@ -53,7 +53,7 @@ class SignUpScreen extends GetView<RegisterController> {
 
               child: Center(
                 child: TextFormField(
-                  obscureText: true,
+
                   decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: "Enter Email",
@@ -61,10 +61,7 @@ class SignUpScreen extends GetView<RegisterController> {
                         Icons.email,
                         color: Colors.black.withOpacity(0.5),
                       ),
-                      suffixIcon: Icon(
-                        Icons.remove_red_eye_outlined,
-                        color: Colors.black.withOpacity(0.5),
-                      )
+
                   ),
                   cursorColor: Colors.black,
                 ),
